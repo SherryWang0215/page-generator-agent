@@ -70,15 +70,13 @@
 
 ## 技术栈
 
-**前端**：Next.js 15、React 19、TypeScript、Tailwind CSS 4、Radix UI、Framer Motion、Zod
+**前端**：Next.js、React、TypeScript、Tailwind CSS 4
 
-**后端**：FastAPI、Pydantic 2、LangGraph、Celery、Redis
+**后端**：FastAPI、LangGraph、Celery、Redis
 
 **RAG**：Elasticsearch 8.15（向量 + 全文）、DashScope Embedding
 
-**LLM**：DeepSeek（OpenAI 兼容协议）
-
-**部署**：Docker Compose
+**LLM**：DeepSeek
 
 ## 项目架构
 
@@ -87,27 +85,6 @@
 Agent 工作流：用户需求进入 `InputGuard` → `Plan` 拆解任务 → `Execute` 调用工具生成 PageDSL（RAG 上下文同时注入）→ `Reflect` 校验结构 → `Answer` 返回结果。Celery Worker 异步执行，SQLite 落库，前端通过 SSE 拉取进度。
 
 ## 本地启动
-
-### 方式一：Docker Compose（推荐）
-
-```bash
-cp .env.example .env
-# 在 .env 中填入 DEEPSEEK_API_KEY 和 DASHSCOPE_API_KEY
-
-docker-compose up -d --build
-docker-compose exec backend python -m scripts.build_index   # 构建知识索引
-```
-
-服务端口：
-
-| 服务 | 端口 | 说明 |
-|------|------|------|
-| backend | 8000 | FastAPI 后端 |
-| frontend | 5173 | 前端（需单独 `cd frontend && npm install && npm run dev`）|
-| elasticsearch | 9200 | 知识库检索 |
-| redis | 6379 | Celery broker |
-
-### 方式二：本地开发（不用 Docker）
 
 ```bash
 # 启动 Redis 和 ES
@@ -132,28 +109,6 @@ npm run dev
 ```
 
 浏览器打开 `http://127.0.0.1:5173`。
-
-## 目录结构
-
-```
-backend/app/
-  agent/           LangGraph Agent（Plan/Execute/Reflect/Answer）
-    nodes/         节点实现
-    tools/         页面生成与知识检索工具
-    tool_harness.py 工具注册与权限控制
-  routers/         API 路由（conversation、pages）
-  services/        LLM 客户端、页面/知识库存储、安全合规、审计、Trace
-  schemas/         PageDSL 协议与组件定义
-  worker/          Celery 异步任务
-frontend/
-  app/             Next.js 页面（首页、会话、预览）
-  components/      渲染器、会话组件、UI 组件
-data/
-  knowledge/       知识文档
-  evals/           离线评估样例
-  audit/           Agent 审计日志
-  page_agent.sqlite3  生成记录与任务记录
-```
 
 ## 环境变量
 
