@@ -1,0 +1,74 @@
+{
+  "page_meta": {
+    "name": "智能手表健康监测推广页",
+    "page_type": "landing_page",
+    "theme": "tech_clean",
+    "audience": "关注健康管理的职场人群",
+    "goal": "产品推广转化"
+  },
+  "layout": {
+    "template_id": "tpl_single_column"
+  },
+  "sections": [
+    {
+      "section_id": "hero_001",
+      "component_type": "hero_banner",
+      "order": 1,
+      "style_token": {
+        "spacing": "lg",
+        "background": "brand",
+        "text_align": "left"
+      },
+      "props": {
+        "title": "全天候健康监测，从手腕开始",
+        "subtitle": "实时掌握心率、睡眠和压力变化，帮助你更早发现身体信号。",
+        "button_text": "立即了解",
+        "image_url": "https://example.com/assets/watch-hero.jpg"
+      }
+    },
+    {
+      "section_id": "features_001",
+      "component_type": "feature_cards",
+      "order": 2,
+      "style_token": {
+        "spacing": "lg",
+        "background": "white",
+        "text_align": "center"
+      },
+      "props": {
+        "title": "核心功能",
+        "items": [
+          {
+            "title": "全天候心率监测",
+            "description": "持续记录心率变化，帮助识别身体状态。"
+          },
+          {
+            "title": "睡眠质量分析",
+            "description": "自动跟踪深睡、浅睡和清醒时段。"
+          },
+          {
+            "title": "长续航体验",
+            "description": "一次充电可满足多天健康追踪需求。"
+          }
+        ]
+      }
+    },
+    {
+      "section_id": "cta_001",
+      "component_type": "cta_button",
+      "order": 3,
+      "style_token": {
+        "spacing": "md",
+        "background": "light",
+        "text_align": "center"
+      },
+      "props": {
+        "title": "现在开始体验更聪明的健康管理",
+        "description": "查看完整产品功能，并领取专属体验权益。",
+        "button_text": "预约体验",
+        "action_type": "navigate",
+        "target_url": "https://example.com/book-demo"
+      }
+    }
+  ]
+}
